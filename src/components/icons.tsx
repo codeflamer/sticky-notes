@@ -5,6 +5,7 @@ import {
   Plus,
   LucideIcon,
   LogOut,
+  Github,
 } from "../../node_modules/lucide-react";
 
 export type Icon = LucideIcon;
@@ -15,4 +16,5 @@ export const Icons = {
   uncompleted: Loader,
   add: Plus,
   logout: LogOut,
+  github: Github,
 };
