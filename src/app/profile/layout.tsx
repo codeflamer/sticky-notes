@@ -7,11 +7,11 @@ interface layoutProps {
 
 const layout: FC<layoutProps> = ({ children }) => {
   return (
-    <div>
-      <div>
+    <div className="flex ">
+      <div className="">
         <SideBar />
       </div>
-      <div>{children}</div>
+      <div className="flex-grow">{children}</div>
     </div>
   );
 };

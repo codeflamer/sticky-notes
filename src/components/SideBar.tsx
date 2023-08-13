@@ -8,7 +8,7 @@ interface sidebarProps {}
 
 const SideBar: FC<sidebarProps> = ({}) => {
   return (
-    <div className="max-w-[250px]  h-screen bg-[#0e1420] text-white rounded-r-lg px-2 py-5 flex flex-col justify-between">
+    <div className="max-w-[250px] md:w-[270px]  h-screen bg-[#0e1420] text-white rounded-r-lg px-2 py-5 flex flex-col justify-between">
       <div>
         <h2 className="capitalize font-medium text-[25px] mt-3">
           Sticky Notes
