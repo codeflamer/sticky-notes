@@ -1,8 +1,8 @@
 "use client";
 import { sideBarConfig } from "@/config/sidebarConfig";
-import { Home } from "../../node_modules/lucide-react";
 import { FC } from "react";
 import { Icons } from "./icons";
+import { signOut } from "next-auth/react";
 
 interface sidebarProps {}
 
@@ -26,7 +26,7 @@ const SideBar: FC<sidebarProps> = ({}) => {
         </ul>
       </div>
       <div className="text-center flex space-x-2 items-center mx-auto px-2 py-2 rounded-md hover:bg-white hover:text-[#0e1420] hover:cursor-pointer ">
-        <button>Logout</button>{" "}
+        <button onClick={() => signOut()}>Logout</button>{" "}
         <Icons.logout className=" h-[19px] font-medium" />
       </div>
     </div>

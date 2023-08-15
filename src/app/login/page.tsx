@@ -2,17 +2,19 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
-import * as z from "zod";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { TypeUserLoginSchema, userLoginSchema } from "@/lib/validations/login";
+import { signIn, signOut } from "next-auth/react";
 
 interface pageProps {}
 
 const Page: FC<pageProps> = ({}) => {
+  const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false);
+
   const {
     register,
     handleSubmit,
@@ -33,13 +35,19 @@ const Page: FC<pageProps> = ({}) => {
         Enter your email below to create your account
       </p>
       <div className="flex space-x-5 mt-2">
-        <Button className="flex-grow hover:bg-gray-100">
+        <Button className="flex-grow ">
           <Icons.github className="h-5 mr-1" />
           Github
         </Button>
-        <Button className="flex-grow hover:bg-gray-100">
+        <Button
+          className="flex-grow"
+          onClick={() => {
+            // setIsGoogleLoading(true);
+            signIn("google");
+          }}
+        >
           <Icons.google className="h-5 mr-2" />
-          Google
+          {isGoogleLoading ? "Loading.." : "Google"}
         </Button>
       </div>
       <div className="flex my-8 justify-center relative ">
