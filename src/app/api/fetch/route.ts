@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 export async function GET(req: Request) {
   try {
     const session = await getServerSession(authOptions);
-    console.log(session);
+    // console.log(session);
     if (!session) {
       return new Response("Unauthorized", { status: 401 });
     }
@@ -19,5 +19,4 @@ export async function GET(req: Request) {
   } catch (e) {
     return new Response("Something went wrong", { status: 500 });
   }
-  // return new Response("ok");
 }

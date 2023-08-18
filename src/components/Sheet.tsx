@@ -4,6 +4,7 @@ import { FC, useState } from "react";
 import { Button } from "./ui/Button";
 import { Icons } from "./icons";
 import axios, { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 interface SheetProps {
   initialSheet: Sheet & {
@@ -13,26 +14,28 @@ interface SheetProps {
 
 const Sheet: FC<SheetProps> = ({ initialSheet }) => {
   // console.log(initialSheet.contents);
+  const router = useRouter();
   const [newContent, setNewContent] = useState<string>("");
 
   const handleAddContent = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await axios.post(
-        "/api/addContent",
+        "/api/content",
         JSON.stringify({ newContent, initialSheet })
       );
       setNewContent("");
+      router.refresh();
     } catch (error) {
       if (error instanceof AxiosError) {
         console.log(error.message);
       }
     }
-    console.log(newContent);
+    // console.log(newContent);
   };
 
   return (
-    <div className="border h-[200px] rounded-md p-2 flex flex-col justify-between">
+    <div className="border h-[200px] rounded-md p-2 flex flex-col justify-between hover:cursor-pointer hover:bg-gray-400">
       <h2 className="text-center mx-auto text-bold text-[18px] italic">
         Sheet
         <hr className="border border-t " />
@@ -63,7 +66,6 @@ const Sheet: FC<SheetProps> = ({ initialSheet }) => {
         <Button variant="default" className="flex-1 space-x-2">
           <span>Edit</span> <Icons.edit className="h-5" />
         </Button>
-        ii
       </div>
     </div>
   );

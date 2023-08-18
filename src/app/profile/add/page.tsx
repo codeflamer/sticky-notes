@@ -22,7 +22,7 @@ const Page: FC<pageProps> = ({}) => {
   };
 
   return (
-    <div className=" flex flex-col  " onSubmit={handleAdd}>
+    <div className=" flex flex-col " onSubmit={handleAdd}>
       <form className="w-[300px] mx-auto mt-[50px] flex  flex-col space-y-3">
         <label htmlFor="todo" className="text-center text-bold">
           New Sheet
