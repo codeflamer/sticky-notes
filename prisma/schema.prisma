@@ -45,6 +45,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  sheets        Sheet[]
 }
 
 model VerificationToken {
@@ -53,4 +54,22 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+
+model Sheet{ 
+  id            Int @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  isEmpty       Boolean @default(true)
+  contents      Content[]
+  User          User @relation(fields: [userId], references: [id])
+  userId        String
+}
+
+model Content{
+  id              Int @id @default(autoincrement())
+  Sheet           Sheet @relation(fields:[sheetId],references: [id])
+  sheetId         Int
+  message         String
+  @@map("contents")
 }

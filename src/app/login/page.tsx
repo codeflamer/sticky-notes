@@ -35,7 +35,7 @@ const Page: FC<pageProps> = ({}) => {
         Enter your email below to create your account
       </p>
       <div className="flex space-x-5 mt-2">
-        <Button className="flex-grow ">
+        <Button className="flex-grow " onClick={() => signIn("github")}>
           <Icons.github className="h-5 mr-1" />
           Github
         </Button>

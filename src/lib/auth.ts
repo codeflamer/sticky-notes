@@ -1,6 +1,7 @@
 import { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import GoogleProvider from "next-auth/providers/google";
+import GithubProvider from "next-auth/providers/github";
 import { db } from "./db";
 
 const getGooglecredentials = () => {
@@ -16,6 +17,18 @@ const getGooglecredentials = () => {
   return { clientId, clientSecret };
 };
 
+const getGithubcredentials = () => {
+  const clientId = process.env.GITHUB_ID;
+  const clientSecret = process.env.GITHUB_SECRET;
+  if (!clientId || clientId?.length == 0) {
+    throw new Error("GITHUB_CLIENT_ID not found");
+  }
+  if (!clientSecret || clientSecret?.length == 0) {
+    throw new Error("GITHUB_CLIENT_SECRET not found");
+  }
+  return { clientId, clientSecret };
+};
+
 export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
@@ -26,13 +39,15 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
 
   providers: [
-    //   GithubProvider({
-    //     clientId: process.env.GITHUB_ID,
-    //     clientSecret: process.env.GITHUB_SECRET,
-    //   }),
+    GithubProvider({
+      clientId: getGithubcredentials().clientId,
+      clientSecret: getGithubcredentials().clientSecret,
+      allowDangerousEmailAccountLinking: true,
+    }),
     GoogleProvider({
       clientId: getGooglecredentials().clientId,
       clientSecret: getGooglecredentials().clientSecret,
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
   callbacks: {

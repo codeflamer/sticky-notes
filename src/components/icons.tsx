@@ -7,6 +7,7 @@ import {
   LogOut,
   Github,
   LucideProps,
+  Pencil,
 } from "../../node_modules/lucide-react";
 
 export type Icon = LucideIcon;
@@ -18,6 +19,7 @@ export const Icons = {
   add: Plus,
   logout: LogOut,
   github: Github,
+  edit: Pencil,
   google: ({ ...props }: LucideProps) => (
     <svg role="img" viewBox="0 0 24 24" {...props}>
       <path
