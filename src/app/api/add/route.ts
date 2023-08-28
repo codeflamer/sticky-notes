@@ -27,5 +27,4 @@ export async function POST(req: Request) {
   } catch (e) {
     return new Response("Something went wrong", { status: 500 });
   }
-  return new Response("OK");
 }

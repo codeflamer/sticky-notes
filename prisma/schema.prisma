@@ -71,5 +71,6 @@ model Content{
   Sheet           Sheet @relation(fields:[sheetId],references: [id])
   sheetId         Int
   message         String
+  completed       Boolean @default(false)
   @@map("contents")
 }
